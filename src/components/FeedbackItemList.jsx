@@ -1,6 +1,7 @@
 import React from 'react'
 import FeedbackItem from './FeedbackItem'
 import PropTypes from 'prop-types'
+import {motion, AnimatePresence} from 'framer-motion'
 
 function FeedbackItemList({feedbackqwe, handleFeedBack}) {
 
@@ -9,11 +10,27 @@ function FeedbackItemList({feedbackqwe, handleFeedBack}) {
       }
 
   return (
-    <div>
+    // <div>
+    //     {feedbackqwe.map((item) => (
+    //     <FeedbackItem key={item.id} item={item} deleteFeedBack={handleFeedBack}/>
+    //   ))}
+    // </div>
+
+    <AnimatePresence>
+      <div className='feedback-list'>
         {feedbackqwe.map((item) => (
-        <FeedbackItem key={item.id} item={item} deleteFeedBack={handleFeedBack}/>
-      ))}
-    </div>
+          <motion.div 
+          key={item.id}
+          initial={{opacity: 0}}
+          animate={{ opacity: 1 }}
+          exit={{opacity: 0}}
+          >
+          <FeedbackItem key={item.id} item={item} deleteFeedBack={handleFeedBack}/>
+        </motion.div>
+        ))}
+        </div>
+    </AnimatePresence>
+
   )
 }
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Card from './shared/Card'
 import Button from './shared/Button'
 import RatingSelect from './RatingSelect'
-function FeedbackForm() {
+function FeedbackForm({addFeedBack}) {
     const [text, setText]=useState('')
     const [btnDisabled, setBtnDisabled]=useState('')
     const [message, setMessage]=useState('')
@@ -23,9 +23,19 @@ function FeedbackForm() {
         }
        
     }
+    const submitForm= (e)=>{
+        e.preventDefault();
+        const newFeedback={
+            text: text,
+            rating: rating
+        }
+        console.log(newFeedback);
+        addFeedBack(newFeedback);
+
+    }
   return (
     <Card>
-        <form>
+        <form onSubmit={submitForm}>
 
             <h2>How would you rate your service</h2>
             <RatingSelect select={(rating) => {

@@ -12,10 +12,14 @@ function App() {
     setFeedback(feedback.filter(x=> x.id !== id));
    }
   }
+  const addNewFeedBack=(newFeed)=>{
+     const newarr=[...feedback, newFeed ]
+     setFeedback(newarr)
+  }
   return (
     <div >
       <Header text="FeedBack UI"/>
-      <FeedbackForm />
+      <FeedbackForm addFeedBack={(newfeed)=> addNewFeedBack(newfeed)} />
       <FeedbackStats feedback={feedback} />
       <FeedBackList feedbackqwe={feedback} handleFeedBack={deleteFeedBack}/>
     </div>
