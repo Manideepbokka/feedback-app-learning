@@ -5,20 +5,16 @@ import {motion, AnimatePresence} from 'framer-motion'
 import FeedbackContext from '../context/FeedbackProvider'
 function FeedbackItemList() {
 
-  const {feedback: feedbackqwe}=useContext(FeedbackContext)
+  const {isLoading, feedback: feedbackqwe}=useContext(FeedbackContext)
 
-    if (!feedbackqwe || feedbackqwe.length === 0) {
+    if (!isLoading && (!feedbackqwe || feedbackqwe.length === 0)) {
         return <p>No feedback available.</p>;
       }
 
-  return (
-    // <div>
-    //     {feedbackqwe.map((item) => (
-    //     <FeedbackItem key={item.id} item={item} deleteFeedBack={handleFeedBack}/>
-    //   ))}
-    // </div>
-
-    <AnimatePresence>
+  
+      return isLoading ? 
+      <h3>Loading...</h3> :
+          <AnimatePresence>
       <div className='feedback-list'>
         {feedbackqwe.map((item) => (
           <motion.div 
@@ -31,9 +27,18 @@ function FeedbackItemList() {
         </motion.div>
         ))}
         </div>
-    </AnimatePresence>
+      </AnimatePresence>
 
-  )
+  // return (
+  //   // <div>
+  //   //     {feedbackqwe.map((item) => (
+  //   //     <FeedbackItem key={item.id} item={item} deleteFeedBack={handleFeedBack}/>
+  //   //   ))}
+  //   // </div>
+
+    
+
+  // )
 }
 
 FeedbackItemList.prototype={
