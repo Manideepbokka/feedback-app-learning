@@ -1,6 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types';
-function FeedbackStats({feedback}) {
+import FeedbackContext from '../context/FeedbackProvider';
+function FeedbackStats() {
+  
+  const {feedback}=useContext(FeedbackContext)
+
     const averagerating=()=>{
         if(feedback.length === 0) return 0;
         const totalRating=feedback.map(x=> x.rating).reduce((acc, curr) => acc + curr, 0);
